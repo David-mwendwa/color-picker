@@ -1,9 +1,12 @@
+import Palette from './Palette';
+import seedColors from './seedColors';
+
 import './App.css';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      color app
+    <div>
+      <Palette palette={seedColors[4]} />
     </div>
   );
 }
