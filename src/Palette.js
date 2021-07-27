@@ -30,7 +30,7 @@ class Palette extends Component {
           handleChange={this.changeFormat}
         />
         <div className='Palette-colors'>{colorBoxes}</div>
-        <footer className='Paletter-footer'>
+        <footer className='Palette-footer'>
           {paletteName}
           <span className='emoji'>{emoji}</span>
         </footer>
