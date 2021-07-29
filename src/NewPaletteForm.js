@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -12,6 +12,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import { Button } from '@material-ui/core';
+import DraggableColorBox from './DraggableColorBox';
 import { ChromePicker } from 'react-color';
 
 const drawerWidth = 400;
@@ -57,6 +58,7 @@ const styles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
+    height: "calc(100vh - 64px)",
     padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
@@ -89,12 +91,12 @@ const NewPaletteForm = () => {
   };
 
   const updateCurrentColor = (newColor) => {
-    setCurrentColor(newColor.hex)
-  }
+    setCurrentColor(newColor.hex);
+  };
 
   const addNewColor = () => {
-    setColors([...colors, currentColor])
-  }
+    setColors([...colors, currentColor]);
+  };
 
   return (
     <div className={classes.root}>
@@ -149,18 +151,23 @@ const NewPaletteForm = () => {
           color={currentColor}
           onChangeComplete={updateCurrentColor}
         />
-        <Button variant="contained" color="primary" style={{backgroundColor: currentColor}} onClick={addNewColor}>Add Color</Button>
+        <Button
+          variant='contained'
+          color='primary'
+          style={{ backgroundColor: currentColor }}
+          onClick={addNewColor}>
+          Add Color
+        </Button>
       </Drawer>
       <main
         className={clsx(classes.content, {
           [classes.contentShift]: open,
         })}>
         <div className={classes.drawerHeader} />
-        <ul>
-          {colors.map(color => (
-            <li style={{backgroundColor: color}}>{color}</li>
-          ))}
-        </ul>
+
+        {colors.map((color) => (
+          <DraggableColorBox color={color} />
+        ))}
       </main>
     </div>
   );
