@@ -76,7 +76,7 @@ const styles = makeStyles((theme) => ({
   },
 }));
 
-const NewPaletteForm = () => {
+const NewPaletteForm = (props) => {
   const classes = styles();
   const theme = useTheme();
   const [open, setOpen] = useState(false);
@@ -117,11 +117,23 @@ const NewPaletteForm = () => {
     setNewName(e.target.value);
   };
 
+  const savePalette = () => {
+    let newName = "New Test Palette"
+    const newPalette = {
+      paletteName: newName,
+      id: newName.toLowerCase().replace(/\s/g, '-'),
+      colors: colors,
+    };
+    props.savePalette(newPalette);
+    props.history.push('/')
+  };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position='fixed'
+        color='default'
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}>
@@ -137,6 +149,12 @@ const NewPaletteForm = () => {
           <Typography variant='h6' noWrap>
             Create a Palette
           </Typography>
+          <Button
+            variant='contained'
+            color='primary'
+            onClick={savePalette}>
+            Save Palette
+          </Button>
         </Toolbar>
       </AppBar>
       <Drawer
