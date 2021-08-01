@@ -82,7 +82,8 @@ const NewPaletteForm = (props) => {
   const [open, setOpen] = useState(false);
   const [currentColor, setCurrentColor] = useState('teal');
   const [colors, setColors] = useState([{ color: 'blue', name: 'blue' }]);
-  const [newName, setNewName] = useState('');
+  const [newColorName, setNewName] = useState('');
+  const [newPaletteName, setPaletteName] = useState('')
 
   // useEffect(() => {
   //   ValidatorForm.addValidationRule('isColorNameUnique', (value) => {
@@ -108,7 +109,7 @@ const NewPaletteForm = (props) => {
   const addNewColor = () => {
     const newColor = {
       color: currentColor,
-      name: newName,
+      name: newColorName,
     };
     setColors([...colors, newColor]);
   };
@@ -116,6 +117,10 @@ const NewPaletteForm = (props) => {
   const handleChange = (e) => {
     setNewName(e.target.value);
   };
+
+  const handlePaletteNameChange = (e) => {
+    setPaletteName(e.target.value)
+  }
 
   const savePalette = () => {
     let newName = "New Test Palette"
@@ -149,6 +154,7 @@ const NewPaletteForm = (props) => {
           <Typography variant='h6' noWrap>
             Create a Palette
           </Typography>
+          <TextValidator label="Palette Name" value={newPaletteName} onChange={handlePaletteNameChange} />
           <Button
             variant='contained'
             color='primary'
@@ -190,7 +196,8 @@ const NewPaletteForm = (props) => {
         />
         <ValidatorForm onSubmit={addNewColor}>
           <TextValidator
-            value={newName}
+            value={newColorName}
+            name="newColorName"
             onChange={handleChange}
             validators={['required']}
             errorMessages={['this field is required']}
