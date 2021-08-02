@@ -129,6 +129,7 @@ const NewPaletteForm = (props) => {
       id: newName.toLowerCase().replace(/\s/g, '-'),
       colors: colors,
     };
+    console.log(newPalette)
     props.savePalette(newPalette);
     props.history.push('/')
   };
