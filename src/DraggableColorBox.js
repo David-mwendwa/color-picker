@@ -14,7 +14,7 @@ const styles = {
     marginBottom: '-7px',
     '&:hover svg': {
       color: 'white',
-      transform: 'scale(1.3)',
+      transform: 'scale(1.2)',
     },
   },
   boxContent: {

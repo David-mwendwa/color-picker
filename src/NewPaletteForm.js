@@ -83,7 +83,7 @@ class NewPaletteForm extends React.Component {
     open: true,
     currentColor: 'teal',
     newColorName: '',
-    colors: [{ color: 'blue', name: 'blue' }],
+    colors: this.props.palettes[0].colors,
     newPaletteName: '',
   };
 
@@ -147,11 +147,15 @@ class NewPaletteForm extends React.Component {
     });
   };
 
-  onSortEnd = ({oldIndex, newIndex}) => {
-    this.setState(({colors}) => ({
-      colors: arrayMove(colors, oldIndex, newIndex)
-    }))
-  }
+  onSortEnd = ({ oldIndex, newIndex }) => {
+    this.setState(({ colors }) => ({
+      colors: arrayMove(colors, oldIndex, newIndex),
+    }));
+  };
+
+  clearColors = () => {
+    this.setState({ colors: [] });
+  };
 
   render() {
     const { classes } = this.props;
@@ -208,7 +212,10 @@ class NewPaletteForm extends React.Component {
           <Divider />
           <Typography variant='h4'>Design your palette</Typography>
           <div>
-            <Button variant='contained' color='secondary'>
+            <Button
+              variant='contained'
+              color='secondary'
+              onClick={this.clearColors}>
               Clear Palette
             </Button>
             <Button variant='contained' color='primary'>
