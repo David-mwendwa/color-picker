@@ -79,6 +79,9 @@ const styles = (theme) => ({
 });
 
 class NewPaletteForm extends React.Component {
+  static defaultProps = {
+    maxColors: 20,
+  };
   state = {
     open: true,
     currentColor: 'teal',
@@ -165,8 +168,9 @@ class NewPaletteForm extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-    const { open } = this.state;
+    const { classes, maxColors } = this.props;
+    const { open, colors } = this.state;
+    const paletteIsFull = colors.length >= maxColors;
 
     return (
       <div className={classes.root}>
@@ -228,7 +232,8 @@ class NewPaletteForm extends React.Component {
             <Button
               variant='contained'
               color='primary'
-              onClick={this.addRandomColor}>
+              onClick={this.addRandomColor}
+              disabled={paletteIsFull}>
               Random Color
             </Button>
           </div>
@@ -252,8 +257,9 @@ class NewPaletteForm extends React.Component {
               variant='contained'
               color='primary'
               type='submit'
-              style={{ backgroundColor: this.state.currentColor }}>
-              Add color
+              disabled={paletteIsFull}
+              style={{ backgroundColor: paletteIsFull ? "grey" : this.state.currentColor }}>
+              {paletteIsFull ? 'Palette Full' : 'Add Colors'}
             </Button>
           </ValidatorForm>
         </Drawer>
