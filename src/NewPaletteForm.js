@@ -157,6 +157,13 @@ class NewPaletteForm extends React.Component {
     this.setState({ colors: [] });
   };
 
+  addRandomColor = () => {
+    const allColors = this.props.palettes.map((p) => p.colors).flat();
+    var rand = Math.floor(Math.random() * allColors.length);
+    const randomColor = allColors[rand];
+    this.setState({ colors: [...this.state.colors, randomColor] });
+  };
+
   render() {
     const { classes } = this.props;
     const { open } = this.state;
@@ -218,7 +225,10 @@ class NewPaletteForm extends React.Component {
               onClick={this.clearColors}>
               Clear Palette
             </Button>
-            <Button variant='contained' color='primary'>
+            <Button
+              variant='contained'
+              color='primary'
+              onClick={this.addRandomColor}>
               Random Color
             </Button>
           </div>
