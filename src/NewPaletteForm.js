@@ -10,8 +10,10 @@ import Divider from '@material-ui/core/Divider';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import Button from '@material-ui/core/Button';
+import { ChromePicker } from 'react-color';
 
-const drawerWidth = 240;
+const drawerWidth = 400;
 
 const styles = (theme) => ({
   root: {
@@ -85,54 +87,67 @@ class NewPaletteForm extends React.Component {
   };
 
   render() {
-    const { classes, theme } = this.props;
+    const { classes } = this.props;
     const { open } = this.state;
 
     return (
       <div className={classes.root}>
-          <CssBaseline />
-          <AppBar
-            position="fixed"
-            className={classNames(classes.appBar, {
-              [classes.appBarShift]: open
-            })}>
-            <Toolbar disableGutters={!open}>
-              <IconButton
-                color='inherit'
-                aria-label='Open drawer'
-                onClick={this.handleDrawerOpen}
-                className={classNames(
-                  classes.menuButton,
-                  open && classes.hide
-                )}>
-                <MenuIcon />
-              </IconButton>
-              <Typography variant='title' color='inherit' noWrap>
-                Persistent drawer
-              </Typography>
-            </Toolbar>
-          </AppBar>
-          <Drawer
-            className={classes.drawer}
-            variant='persistent'
-            anchor='left'
-            open={open}
-            classes={{
-              paper: classes.drawerPaper,
-            }}>
-            <div className={classes.drawerHeader}>
-              <IconButton onClick={this.handleDrawerClose}>
-                <ChevronLeftIcon />
-              </IconButton>
-            </div>
-            <Divider />
-          </Drawer>
-          <main
-            className={classNames(classes.content, {
-              [classes.contentShift]: open,
-            })}>
-            <div className={classes.drawerHeader} />
-          </main>
+        <CssBaseline />
+        <AppBar
+          position='fixed'
+          className={classNames(classes.appBar, {
+            [classes.appBarShift]: open,
+          })}>
+          <Toolbar disableGutters={!open}>
+            <IconButton
+              color='inherit'
+              aria-label='Open drawer'
+              onClick={this.handleDrawerOpen}
+              className={classNames(classes.menuButton, open && classes.hide)}>
+              <MenuIcon />
+            </IconButton>
+            <Typography variant='title' color='inherit' noWrap>
+              Persistent drawer
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <Drawer
+          className={classes.drawer}
+          variant='persistent'
+          anchor='left'
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}>
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={this.handleDrawerClose}>
+              <ChevronLeftIcon />
+            </IconButton>
+          </div>
+          <Divider />
+          <Typography variant='h4'>Design your palette</Typography>
+          <div>
+            <Button variant='contained' color='secondary'>
+              Clear Palette
+            </Button>
+            <Button variant='contained' color='primary'>
+              Random Color
+            </Button>
+          </div>
+          <ChromePicker
+            color='red'
+            onChangeComplete={(newColor) => console.log(newColor)}
+          />
+          <Button variant='contained' color='primary'>
+            Add color
+          </Button>
+        </Drawer>
+        <main
+          className={classNames(classes.content, {
+            [classes.contentShift]: open,
+          })}>
+          <div className={classes.drawerHeader} />
+        </main>
       </div>
     );
   }
