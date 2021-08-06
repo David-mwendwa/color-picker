@@ -1,9 +1,12 @@
-import { DRAWER_WIDTH } from "../constants";
-const drawerWidth = DRAWER_WIDTH
+import { DRAWER_WIDTH } from '../constants';
+const drawerWidth = DRAWER_WIDTH;
 
 const styles = (theme) => ({
   root: {
     display: 'flex',
+  },
+  hide: {
+    display: 'none',
   },
   appBar: {
     transition: theme.transitions.create(['margin', 'width'], {
@@ -38,4 +41,4 @@ const styles = (theme) => ({
   },
 });
 
-export default styles
+export default styles;
