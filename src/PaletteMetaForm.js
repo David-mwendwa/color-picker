@@ -32,12 +32,12 @@ class PaletteMetaForm extends React.Component {
   };
 
   savePalette = (emoji) => {
-    console.log(emoji.native);
     const newPalette = {
       paletteName: this.state.newPaletteName,
       emoji: emoji.native,
     };
     this.props.handleSubmit(newPalette);
+    this.setState({ stage: '' });
   };
 
   handleClickOpen = () => {
@@ -50,7 +50,7 @@ class PaletteMetaForm extends React.Component {
 
   render() {
     const { newPaletteName } = this.state;
-    const { hideForm, handleSubmit } = this.props;
+    const { hideForm } = this.props;
 
     return (
       <div>
