@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 
+import seedColors from './seedColors'
 import ColorPickerForm from './ColorPickerForm';
 
 import styles from './styles/NewPaletteFormStyles'
@@ -21,7 +22,7 @@ class NewPaletteForm extends React.Component {
   };
   state = {
     open: true,
-    colors: this.props.palettes[0].colors,
+    colors: seedColors[0].colors,
   };
 
   handleDrawerOpen = () => {
