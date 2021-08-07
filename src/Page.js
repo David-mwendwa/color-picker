@@ -1,4 +1,5 @@
 import React from 'react'
+
 import './styles/Page.css'
 
 const Page = ({children}) => {

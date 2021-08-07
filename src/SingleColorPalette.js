@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+
 import Navbar from './Navbar';
 import ColorBox from './ColorBox';
 import PaletteFooter from './PaletteFooter';
-import { Link } from 'react-router-dom';
-import { withStyles } from '@material-ui/styles';
 
+import { withStyles } from '@material-ui/styles';
 import styles from './styles/PaletteStyles';
 
 class SingleColorPalette extends Component {
@@ -12,11 +13,9 @@ class SingleColorPalette extends Component {
     super(props);
     this._shades = this.gatherShades(this.props.palette, this.props.colorId);
     this.state = { format: 'hex' };
-    //console.log(this._shades);
   }
 
   gatherShades = (palette, colorToFilterBy) => {
-    //console.log('palette',palette, 'colorToFilterBy', colorToFilterBy)
     let shades = [];
     let allColors = palette.colors;
 

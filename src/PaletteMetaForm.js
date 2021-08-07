@@ -1,13 +1,14 @@
 import React from 'react';
+import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
+import { Picker } from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css';
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
-import { TextValidator, ValidatorForm } from 'react-material-ui-form-validator';
-import { Picker } from 'emoji-mart';
-import 'emoji-mart/css/emoji-mart.css';
 
 class PaletteMetaForm extends React.Component {
   state = {
@@ -49,19 +50,19 @@ class PaletteMetaForm extends React.Component {
   };
 
   render() {
-    const { newPaletteName } = this.state;
+    const { newPaletteName, stage } = this.state;
     const { hideForm } = this.props;
 
     return (
       <div>
-        <Dialog open={this.state.stage === 'emoji'} onClose={hideForm}>
+        <Dialog open={stage === 'emoji'} onClose={hideForm}>
           <DialogTitle id='form-dialog-title'>
             Choose a Palette Emoji
           </DialogTitle>
           <Picker title='Pick a Palette Emoji' onSelect={this.savePalette} />
         </Dialog>
         <Dialog
-          open={this.state.stage === 'form'}
+          open={stage === 'form'}
           onClose={hideForm}
           aria-labelledby='form-dialog-title'>
           <DialogTitle id='form-dialog-title'>
