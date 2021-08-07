@@ -2,14 +2,14 @@ import sizes from './sizes';
 import bg from './backgrounds/bg2.svg'
 
 const styles = {
-  "@global": {
-    ".fade-exit": {
-      opacity: 1
+  '@global': {
+    '.fade-exit': {
+      opacity: 1,
     },
-    ".fade-exit-active": {
+    '.fade-exit-active': {
       opacity: 0,
-      transition: "opacity 500ms ease-out"
-    }
+      transition: 'opacity 500ms ease-out',
+    },
   },
   root: {
     height: '100vh',
@@ -19,10 +19,10 @@ const styles = {
     /* background by SVGBackgrounds.com */
     backgroundColor: '#230eaa',
     backgroundImage: `url(${bg})`,
-    overflow: "scroll"
+    overflow: 'scroll',
   },
   heading: {
-    fontSize: "2rem"
+    fontSize: '2rem',
   },
   container: {
     width: '50%',
@@ -45,6 +45,12 @@ const styles = {
     color: 'white',
     '& a': {
       color: 'white',
+    },
+    [sizes.down('xl')]: {
+      width: '93%',
+    },
+    [sizes.down('sm')]: {
+      width: '100%',
     },
   },
   palettes: {

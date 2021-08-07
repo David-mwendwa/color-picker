@@ -6,6 +6,7 @@ const styles = {
     alignItems: 'center',
     justifyContent: 'flex-start',
     height: '6vh',
+    width: "80%"
   },
   logo: {
     marginRight: '15px',
