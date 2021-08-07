@@ -1,12 +1,19 @@
 import sizes from './sizes';
+import bg from './backgrounds/bg2.svg'
 
 const styles = {
   root: {
-    backgroundColor: 'blue',
     height: '100vh',
     display: 'flex',
     alignItems: 'flex-start',
     justifyContent: 'center',
+    /* background by SVGBackgrounds.com */
+    backgroundColor: '#230eaa',
+    backgroundImage: `url(${bg})`,
+    overflow: "scroll"
+  },
+  heading: {
+    fontSize: "2rem"
   },
   container: {
     width: '50%',
@@ -42,7 +49,7 @@ const styles = {
     },
     [sizes.down('xs')]: {
       gridTemplateColumns: 'repeat(1, 100%)',
-      gridGap: '1rem',
+      gridGap: '1.4rem',
     },
   },
 };
