@@ -11,10 +11,10 @@ import Button from '@material-ui/core/Button';
 import DraggableColorList from './DraggableColorList';
 import { arrayMove } from 'react-sortable-hoc';
 
-import seedColors from './seedColors'
+import seedColors from './seedColors';
 import ColorPickerForm from './ColorPickerForm';
 
-import styles from './styles/NewPaletteFormStyles'
+import styles from './styles/NewPaletteFormStyles';
 
 class NewPaletteForm extends React.Component {
   static defaultProps = {
@@ -69,8 +69,18 @@ class NewPaletteForm extends React.Component {
 
   addRandomColor = () => {
     const allColors = this.props.palettes.map((p) => p.colors).flat();
-    var rand = Math.floor(Math.random() * allColors.length);
-    const randomColor = allColors[rand];
+    let rand;
+    let randomColor;
+    let isDuplicateColor = true;
+    while (isDuplicateColor) {
+      rand = Math.floor(Math.random() * allColors.length);
+      randomColor = allColors[rand];
+      isDuplicateColor = this.state.colors.some(
+        // eslint-disable-next-line no-loop-func
+        (color) => color.name === randomColor.name
+      );
+      
+    }
     this.setState({ colors: [...this.state.colors, randomColor] });
   };
 
@@ -102,7 +112,9 @@ class NewPaletteForm extends React.Component {
           </div>
           <Divider />
           <div className={classes.container}>
-            <Typography variant='h4' gutterBottom>Design your palette</Typography>
+            <Typography variant='h4' gutterBottom>
+              Design your palette
+            </Typography>
             <div className={classes.buttons}>
               <Button
                 variant='contained'
